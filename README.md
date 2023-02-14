@@ -14,3 +14,18 @@
 1. After the above get request, the server will respond with a HTTP response
 2. The data that is returned are JSON structured of events in Atlanta, GA happening today.
 3. You can view [example](https://serpapi.com/google-events-api) here
+
+```mermaid
+sequenceDiagram
+    User->>+Microservice: GET request
+    note right of User: http://localhost:3000/events
+
+    
+   loop For multiple pages
+   Microservice->>+SERPAPI: API call getJSON()
+
+    SERPAPI-->>-Microservice: "Events in Atlanta, GA" data
+    end
+
+    Microservice -->>-User: Array of Events Object
+```
